@@ -1,2 +1,4 @@
 # cpp-console-game
-Console game with cpp.
+Console game engine with cpp. Example rendered game objects.
+
+![alt](.images/yuksel_image.png)

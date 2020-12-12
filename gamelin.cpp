@@ -5,7 +5,7 @@
 #include <conio.h>
 #include <thread>
 #include <memory>
-
+#include <windows.h>
 /*
 define custom defined attributes to objects
 template <class ...Attributes>
@@ -28,35 +28,17 @@ using GameObject<Walk, Jump> myGameObj() {
 */
 
 
-
-#ifndef WINDOWS
-/*
-char status = '0';
-while(status != '1') {
-	if(kbhit() != 0) {
-		status = getch(); 
-		cout << status << endl;
-	}
-}
-*/
-#endif
-
 template <class T>
 class CLIPixel {
 private:
 	T *parent_;
 	int parent_obj_id_;
 	std::vector<int> objs_;
-
 };
+
 
 class GameObject {
 public:
-	const int up = 1;
-	const int down = 2;
-	const int left = 3;
-	const int right = 4;
-
 	int width_;
 	int height_;
 	int x_;
@@ -78,35 +60,41 @@ GameObject :: GameObject(int x, int y, int width, int height) {
 
 std::vector<std::vector<std::string>> GameObject :: Draw() {
 	std::vector<std::vector<std::string>> obj_view(y_+height_, std::vector<std::string>(x_ + width_, " "));
+	obj_view[0][1] = "Y";
+	obj_view[0][2] = "U";
+	obj_view[0][3] = "K";
+	obj_view[0][4] = "S";
+	obj_view[0][5] = "E";
+	obj_view[0][6] = "L";
 
-	obj_view[0][3] = "[";	
-	obj_view[0][4] = "5";	
-	obj_view[0][5] = "]";	
+	obj_view[1][3] = "[";	
+	obj_view[1][4] = "5";	
+	obj_view[1][5] = "]";	
 
 	for(int i=1;i<8;i++)
-		obj_view[1][i] = "-";
+		obj_view[2][i] = "-";
 
-	obj_view[2][1] = "|";	
-	obj_view[2][4] = "|";	
-	obj_view[2][7] = "|";
-	
 	obj_view[3][1] = "|";	
 	obj_view[3][4] = "|";	
-	obj_view[3][7] = "|";	
+	obj_view[3][7] = "|";
 	
+	obj_view[4][1] = "|";	
 	obj_view[4][4] = "|";	
+	obj_view[4][7] = "|";	
 	
-	obj_view[5][2] = "/";	
-	obj_view[5][3] = "/";	
-	obj_view[5][5] = "\\";	
-	obj_view[5][6] = "\\";
-
-	obj_view[6][0] = "_";
-	obj_view[6][1] = "/";	
+	obj_view[5][4] = "|";	
+	
 	obj_view[6][2] = "/";	
-	obj_view[6][6] = "\\";	
-	obj_view[6][7] = "\\";
-	obj_view[6][8] = "_";
+	obj_view[6][3] = "/";	
+	obj_view[6][5] = "\\";	
+	obj_view[6][6] = "\\";
+
+	obj_view[7][0] = "_";
+	obj_view[7][1] = "/";	
+	obj_view[7][2] = "/";	
+	obj_view[7][6] = "\\";	
+	obj_view[7][7] = "\\";
+	obj_view[7][8] = "_";
 	
 	/* x= 7, y= 8
 	  [5]
@@ -115,7 +103,7 @@ std::vector<std::vector<std::string>> GameObject :: Draw() {
 	|  |  |
 	   |
 	 // \\
- _//   \\_
+   _//   \\_
 
 */
 	return obj_view;
@@ -188,7 +176,10 @@ CLIRenderer :: CLIRenderer(int max_x = 50, int max_y = 170) {
 }
 
 void CLIRenderer :: clearScreen() {
-	system("CLS");
+	COORD cursorPosition;
+	cursorPosition.X = 0;	
+	cursorPosition.Y = 0;	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
 std::string CLIRenderer :: getVisibleRegionPixelData() {
@@ -207,7 +198,8 @@ void CLIRenderer :: Render() {
 	// full page
 	DrawObjects();
 	std::string screen_ = getVisibleRegionPixelData();
-	std::cout<<screen_<<std::flush;
+	std::cout<<screen_;
+	clearScreen();
 }
 
 
@@ -229,16 +221,22 @@ class Gravity {
 int main(){
 
 	CLIRenderer *renderer = new CLIRenderer();
-	GameObject* g_object = new GameObject(10, 20, 7, 9);
+	GameObject* g_object = new GameObject(10, 20, 8, 9);
+	GameObject* g_object_2 = new GameObject(20, 70, 8,9);
 	renderer->AttachObject(g_object);
-	
+	renderer->AttachObject(g_object_2);
+
+
 	char input = '0';
 	std::thread input_thread(getKeyboardInput, &input, renderer, g_object);
 	input_thread.detach();
 	while(input != 'q') {
-		usleep(1000000/60);
+		usleep(1000000/100);
 		renderer->Render();
 	}
+	return 0;
+}
+
 //	auto f = std::async(std::launch::async, getKeyboardInput);
 //	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
 //		std::cout<<f.get()<<"\n";		
@@ -248,5 +246,3 @@ int main(){
 //		renderer->Render();
 //		g_object->Move(command);
 //	}
-	return 0;
-}
