@@ -214,9 +214,6 @@ void getKeyboardInput(char *command, CLIRenderer *renderer, GameObject *g_object
 	}
 }
 
-class Gravity {
-
-};
 
 int main(){
 
