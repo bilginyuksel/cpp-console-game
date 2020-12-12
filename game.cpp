@@ -3,6 +3,15 @@
 #include <unistd.h>
 
 
+template <class T>
+class CLIPixel {
+private:
+	T *parent_;
+	int parent_obj_id_;
+	std::vector<int> objs_;
+
+};
+
 class GameObject {
 public:
 	const int up = 1;
@@ -32,44 +41,44 @@ GameObject :: GameObject(int x, int y, int width, int height) {
 std::vector<std::vector<std::string>> GameObject :: Draw() {
 	std::vector<std::vector<std::string>> obj_view(y_+height_, std::vector<std::string>(x_ + width_, " "));
 
-	obj_view[0][2] = "0";	
-	obj_view[0][3] = "0";	
-	obj_view[0][4] = "0";	
-	obj_view[1][2] = "0";	
-	obj_view[1][3] = "0";	
-	obj_view[1][4] = "0";
+	obj_view[0][3] = "[";	
+	obj_view[0][4] = "5";	
+	obj_view[0][5] = "]";	
 
-	for(int i=0;i<7;i++)
-		obj_view[2][i] = "*";
+	for(int i=1;i<8;i++)
+		obj_view[1][i] = "-";
 
-	obj_view[3][0] = "*";	
-	obj_view[3][3] = "*";	
-	obj_view[3][6] = "*";
+	obj_view[2][1] = "|";	
+	obj_view[2][4] = "|";	
+	obj_view[2][7] = "|";
 	
-	obj_view[4][0] = "*";	
-	obj_view[4][3] = "*";	
-	obj_view[4][6] = "*";	
+	obj_view[3][1] = "|";	
+	obj_view[3][4] = "|";	
+	obj_view[3][7] = "|";	
 	
-	obj_view[5][3] = "*";	
+	obj_view[4][4] = "|";	
 	
-	obj_view[6][1] = "*";	
-	obj_view[6][2] = "*";	
-	obj_view[6][4] = "*";	
-	obj_view[6][5] = "*";
+	obj_view[5][2] = "/";	
+	obj_view[5][3] = "/";	
+	obj_view[5][5] = "\\";	
+	obj_view[5][6] = "\\";
 
-	obj_view[7][1] = "*";	
-	obj_view[7][5] = "*";	
+	obj_view[6][0] = "_";
+	obj_view[6][1] = "/";	
+	obj_view[6][2] = "/";	
+	obj_view[6][6] = "\\";	
+	obj_view[6][7] = "\\";
+	obj_view[6][8] = "_";
+	
+	/* x= 7, y= 8
+	  [5]
+	-------
+	|  |  |
+	|  |  |
+	   |
+	 // \\
+ _//   \\_
 
-	/*
-      000
-	  000
-	*******
-	*  *  *
-	*  *  *
-	   *
-	 ** **
-	 *   *
-	// 7, 8
 */
 	return obj_view;
 }
@@ -83,6 +92,8 @@ void GameObject :: Move(int c) {
 		x_++;
 	else if(c == left)
 		x_--;
+	else if(c == 7) // jump
+		return;
 }
 
 class CLIRenderer {
@@ -162,24 +173,12 @@ void CLIRenderer :: Render() {
 
 
 void CLIRenderer :: AttachObject(GameObject *g_object) {
-	// render these piece of shit
 	game_objects_.push_back(g_object);	
-
-	// update screen with that information
-	int x_start = g_object->x_;
-	int x_end = g_object->x_ + g_object->width_;
-	int y_start = g_object->y_;
-	int y_end = g_object->y_ + g_object->height_;
-	for(int i = x_start; i<x_end; i++) {
-		for(int j= y_start; j<y_end; j++){
-			screen_scene_[i][j] = "*";	
-		}
-	}
 }
 
 int main(){
 	CLIRenderer *renderer = new CLIRenderer;
-	GameObject *g_object = new GameObject(10, 20, 7, 8);
+	GameObject *g_object = new GameObject(10, 20, 7, 9);
 	renderer->AttachObject(g_object);
 	int d = -1;
 	while(d!= 0) {
