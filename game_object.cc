@@ -67,12 +67,13 @@ Rect :: Rect(int left, int right, int bottom, int top) {
     this->right_ = right;
     this->bottom_ = bottom;
     this->top_ = top;
+    std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
 }
 void Rect :: updateXY(int x, int y) {
-    left_ += x;
-    right_ += x;
-    bottom_ += y;
-    top_ += y;
+    left_ += y;
+    right_ += y;
+    bottom_ += x;
+    top_ += x;
 }
 const int Rect :: GetLeft() {
     return left_;
@@ -91,10 +92,9 @@ const bool Rect :: Contains(const Rect &rect) {
         (this->top_ <= rect.top_ && this->bottom_ >= rect.bottom_);
 }
 const bool Rect :: Intersects(const Rect &rect) {
-    std::cout<<"Current rect: "<<this->left_<<", "<<this->right_<<","<<this->top_<<", "<<this->bottom_<<"\n";  
-    bool is_x_intersects = !((rect.left_ > this->right_) || (this->left_ > rect.right_));
-    bool is_y_intersects = !((rect.bottom_ > this->top_) || (this->bottom_ > rect.top_));
-    return is_x_intersects || is_y_intersects;
+    // std::cout<<"{left:"<<left_<<", bottom:"<<bottom_<<", top:"<<top_<<", right:"<<right_<<"}\n";
+    // std::cout<<"{left:"<<rect.left_<<", bottom:"<<rect.bottom_<<", top:"<<rect.top_<<", right:"<<rect.right_<<"}\n";
+    return  (this->left_ > rect.right_) && (this->right_ < rect.left_) && (this->top_ < rect.bottom_) && (this->bottom_ > rect.top_);
 }
 
 // GAME_OBJECT
@@ -108,10 +108,10 @@ Transform* GameObject :: GetTransform() {
     return transform_;
 }
 GameObject :: GameObject(int x, int y, int width, int height) {
-    int left = x;
-    int right = x+width;
-    int top = y;
-    int bottom = y+height;
+    int left = y;
+    int right = y+width;
+    int top = x;
+    int bottom = x+height;
     Rect *rect = new Rect(left, right, bottom, top);
     this->collider_ = new Collider(rect);
     this->transform_ = new Transform(x, y, width, height, rect);
@@ -124,8 +124,6 @@ Collider* GameObject :: GetCollider() {
     return collider_;
 }
 void GameObject :: Move(char inp) {
-    int x = transform_->GetPosition()->GetX();
-    int y = transform_->GetPosition()->GetY();
     if(inp == 'H')
         transform_->updateXY(-1, 0);
     else if(inp == 'P')
@@ -134,4 +132,10 @@ void GameObject :: Move(char inp) {
         transform_->updateXY(0, 1);
     else if(inp == 'K')
         transform_->updateXY(0, -1);
+    int left = this->collider_->GetRect()->GetLeft();
+    int bottom = this->collider_->GetRect()->GetBottom();
+    int top = this->collider_->GetRect()->GetTop();
+    int right = this->collider_->GetRect()->GetRight();
+    std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
+    
 }

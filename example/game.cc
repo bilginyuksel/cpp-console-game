@@ -21,40 +21,51 @@ public:
     int x = pos->GetX();
     std::vector<std::vector<std::string>> obj_view(y + height, std::vector<std::string>(x + width, " "));
 
-    obj_view[0][3] = "[";
-    obj_view[0][4] = "5";
-    obj_view[0][5] = "]";
+    obj_view[0][1] = "Y";
+    obj_view[0][2] = "U";
+    obj_view[0][3] = "K";
+    obj_view[0][4] = "S";
+    obj_view[0][5] = "E";
+    obj_view[0][6] = "L";
+
+    obj_view[1][3] = "[";
+    obj_view[1][4] = "5";
+    obj_view[1][5] = "]";
 
     for (int i = 1; i < 8; i++)
-      obj_view[1][i] = "-";
-
-    obj_view[2][1] = "|";
-    obj_view[2][4] = "|";
-    obj_view[2][7] = "|";
+      obj_view[2][i] = "-";
 
     obj_view[3][1] = "|";
     obj_view[3][4] = "|";
     obj_view[3][7] = "|";
 
+    obj_view[4][1] = "|";
     obj_view[4][4] = "|";
+    obj_view[4][7] = "|";
 
-    obj_view[5][2] = "/";
-    obj_view[5][3] = "/";
-    obj_view[5][5] = "\\";
-    obj_view[5][6] = "\\";
+    obj_view[5][4] = "|";
 
-    obj_view[6][0] = "_";
-    obj_view[6][1] = "/";
     obj_view[6][2] = "/";
+    obj_view[6][3] = "/";
+    obj_view[6][5] = "\\";
     obj_view[6][6] = "\\";
-    obj_view[6][7] = "\\";
-    obj_view[6][8] = "_";
+
+    obj_view[7][0] = "_";
+    obj_view[7][1] = "/";
+    obj_view[7][2] = "/";
+    obj_view[7][6] = "\\";
+    obj_view[7][7] = "\\";
+    obj_view[7][8] = "_";
 
     return obj_view;
   }
 
   bool OnCollision(GameObject &o) {
-    std::cout<<"Collision happened character";
+    int left = this->collider_->GetRect()->GetLeft();
+    int bottom = this->collider_->GetRect()->GetBottom();
+    int top = this->collider_->GetRect()->GetTop();
+    int right = this->collider_->GetRect()->GetRight();
+    std::cout<<"Character{left:"<<left<<", bottom:"<<bottom<<", top:"<<top<<", right:"<<right<<"}\n";
     return false;
   }
 };
@@ -89,7 +100,11 @@ public:
    return obj_vw;
   }
    bool OnCollision(GameObject &o) {
-    std::cout<<"Collision happened box";
+    int left = this->collider_->GetRect()->GetLeft();
+    int bottom = this->collider_->GetRect()->GetBottom();
+    int top = this->collider_->GetRect()->GetTop();
+    int right = this->collider_->GetRect()->GetRight();
+    std::cout<<"Box{left:"<<left<<", bottom:"<<bottom<<", top:"<<top<<", right:"<<right<<"}\n";
     return false;
   }
 };
@@ -105,11 +120,11 @@ int main()
 {
   Character *character = new Character(10, 20, 8, 9);
   Box *box1 = new Box(30,50, 3, 7);
-  Box *box2 = new Box(40,50, 3, 7);
+  // Box *box2 = new Box(40,50, 3, 7);
   CLIRenderer *renderer = new CLIRenderer();
   renderer->AttachObject(character);
   renderer->AttachObject(box1);
-  renderer->AttachObject(box2);
+  // renderer->AttachObject(box2);
 
   char input = '0';
   std::thread input_thread(getKeyboardInput, &input, renderer, character);

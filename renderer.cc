@@ -37,11 +37,11 @@ std::string CLIRenderer :: getVisibleRegionPxData() {
 
 void CLIRenderer :: Render() {
   checkCollision();
-  clearScene();
+  // clearScene();
   draw();
   std::string screen = getVisibleRegionPxData();
   std::cout<<screen;
-  clearScene();
+  // clearScene();
 }
 
 void CLIRenderer :: draw() {
