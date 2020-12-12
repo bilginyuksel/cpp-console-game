@@ -4,6 +4,7 @@
 #include <future>
 #include <conio.h>
 #include <thread>
+#include <memory>
 
 /*
 define custom defined attributes to objects
@@ -27,17 +28,6 @@ using GameObject<Walk, Jump> myGameObj() {
 */
 
 
-char getKeyboardInput(){
-	char input = '0';
-	while(input != 'q') {
-		input = getch();
-		if(input == 'H'){
-			std::cout<<"up\n";
-		}
-		std::cout<<input;
-	}
-	return input;
-}
 
 #ifndef WINDOWS
 /*
@@ -177,7 +167,7 @@ void CLIRenderer :: DrawObjects() {
 		for(int j=0;j<screen_max_y_; j++)
 			screen_scene_[i][j] = " ";
 	
-	for(auto *obj : game_objects_) {
+	for(auto* obj : game_objects_) {
 		int xs = obj->x_;
 		int xe = obj->x_ + obj->width_;
 		int ys = obj->y_;
@@ -198,7 +188,7 @@ CLIRenderer :: CLIRenderer(int max_x = 50, int max_y = 170) {
 }
 
 void CLIRenderer :: clearScreen() {
-	system("clear");
+	system("CLS");
 }
 
 std::string CLIRenderer :: getVisibleRegionPixelData() {
@@ -221,19 +211,38 @@ void CLIRenderer :: Render() {
 }
 
 
-void CLIRenderer :: AttachObject(GameObject *g_object) {
+void CLIRenderer :: AttachObject(GameObject* g_object) {
 	game_objects_.push_back(g_object);	
 }
 
-int main(){
-	auto f = std::async(std::launch::async, getKeyboardInput);
-	CLIRenderer *renderer = new CLIRenderer;
-	GameObject *g_object = new GameObject(10, 20, 7, 9);
-	renderer->AttachObject(g_object);
-	char command = '0';
-	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
-		std::cout<<f.get()<<"\n";		
+void getKeyboardInput(char *command, CLIRenderer *renderer, GameObject *g_object) {
+	while(*command != 'q') {
+		*command = getch();
+		g_object->Move(*command);
 	}
+}
+
+class Gravity {
+
+};
+
+int main(){
+
+	CLIRenderer *renderer = new CLIRenderer();
+	GameObject* g_object = new GameObject(10, 20, 7, 9);
+	renderer->AttachObject(g_object);
+	
+	char input = '0';
+	std::thread input_thread(getKeyboardInput, &input, renderer, g_object);
+	input_thread.detach();
+	while(input != 'q') {
+		usleep(1000000/60);
+		renderer->Render();
+	}
+//	auto f = std::async(std::launch::async, getKeyboardInput);
+//	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
+//		std::cout<<f.get()<<"\n";		
+//	}
 //	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
 //		std::cout<<f.get()<<"\n";
 //		renderer->Render();
