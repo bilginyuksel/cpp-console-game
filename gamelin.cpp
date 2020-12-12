@@ -1,9 +1,45 @@
 #include <iostream>
 #include <vector>
 #include <unistd.h>
+#include <future>
+#include <conio.h>
+#include <thread>
+
+/*
+define custom defined attributes to objects
+template <class ...Attributes>
+and bind these attributes with the movements or I don't know yet.
+But users could have the chance to animate, reposition, transform characters with these attributes.
+
+class Walk: public Animation {
+
+};
+
+class Jump: public Animation {
+
+};
+
+using GameObject<Walk, Jump> myGameObj() {
+	define the game object here.
+	in background call all attributes with run function
+}
+
+*/
+
+
+char getKeyboardInput(){
+	char input = '0';
+	while(input != 'q') {
+		input = getch();
+		if(input == 'H'){
+			std::cout<<"up\n";
+		}
+		std::cout<<input;
+	}
+	return input;
+}
 
 #ifndef WINDOWS
-#include <conio.h>
 /*
 char status = '0';
 while(status != '1') {
@@ -190,17 +226,18 @@ void CLIRenderer :: AttachObject(GameObject *g_object) {
 }
 
 int main(){
+	auto f = std::async(std::launch::async, getKeyboardInput);
 	CLIRenderer *renderer = new CLIRenderer;
 	GameObject *g_object = new GameObject(10, 20, 7, 9);
 	renderer->AttachObject(g_object);
-	char command = 'f';
-	while(command!= 'q') {
-		if(kbhit() != 0 ) {
-			command = getch();
-			g_object->Move(command);
-		}
-		usleep(10000);
-		renderer->Render();
-	}	
+	char command = '0';
+	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
+		std::cout<<f.get()<<"\n";		
+	}
+//	while(f.wait_for(std::chrono::milliseconds(20)) != std::future_status::ready) {
+//		std::cout<<f.get()<<"\n";
+//		renderer->Render();
+//		g_object->Move(command);
+//	}
 	return 0;
 }
