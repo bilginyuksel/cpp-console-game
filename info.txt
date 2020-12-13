@@ -1,0 +1,25 @@
+- create activity lifecycle's for an object
+You can create protected lifecycle methods for each object you have created.
+This event's can be overriden by users.
+Example;
+onInputCaptured() {
+
+}
+onPositionChanged(){
+
+}
+onCollision(){
+
+}
+onStart(){
+
+}
+onUpdate(){
+
+}
+onDestroy(){
+    
+}
+onPyshics() {
+    
+}
