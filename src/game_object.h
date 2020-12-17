@@ -22,14 +22,20 @@ protected:
 private:
   std::string uuid_;
   int id_;
+  bool is_solid_;
   bool updateObjPosition();
 public:
   GameObject(int x, int y, int width, int height);
   virtual std::vector<std::vector<std::string>> Draw() = 0;
   virtual bool OnCollision(GameObject&);
+ 
+  const bool IsSolid();
+  void SetSolid(bool is_solid);
+  void SetCollider(Collider*);
+  
+  Transform* GetTransform();
   const std::string GetUuid();
   const int GetId();
-  Transform* GetTransform();
   Collider* GetCollider();
   void Move(char inp);
 };
@@ -78,6 +84,9 @@ public:
 class Collision {
 public:
   virtual void OnCollision(GameObject &parent) = 0;
+  virtual void OnCollisionEnter(GameObject &parent) = 0;
+  virtual void OnCollisionExit(GameObject &parent) = 0;
+  virtual void OnCollisionStay(GameObject &parent) = 0;
 };
 
 class Rect {

@@ -5,15 +5,14 @@
 #include <conio.h>
 #include <thread>
 #include <memory>
-#include "../game_object.h"
-#include "../renderer.h"
+#include "../src/game_object.h"
+#include "../src/renderer.h"
 
 class Character : public GameObject {
 public:
   Character(int x, int y, int width, int height) : GameObject(x, y, width, height) {
   }
-  std::vector<std::vector<std::string>> Draw()
-  {
+  std::vector<std::vector<std::string>> Draw(){
     int height = transform_->GetHeight();
     int width = transform_->GetWidth();
     Position *pos = transform_->GetPosition();
@@ -119,12 +118,12 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject* g_object) 
 int main()
 {
   Character *character = new Character(10, 20, 8, 9);
-  Box *box1 = new Box(30,50, 3, 7);
-  // Box *box2 = new Box(40,50, 3, 7);
+  Box *box1 = new Box(30,50, 7, 3);
+  Box *box2 = new Box(30,70, 7, 3);
   CLIRenderer *renderer = new CLIRenderer();
   renderer->AttachObject(character);
   renderer->AttachObject(box1);
-  // renderer->AttachObject(box2);
+  renderer->AttachObject(box2);
 
   char input = '0';
   std::thread input_thread(getKeyboardInput, &input, renderer, character);

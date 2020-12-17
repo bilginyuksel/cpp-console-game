@@ -67,7 +67,7 @@ Rect :: Rect(int left, int right, int bottom, int top) {
     this->right_ = right;
     this->bottom_ = bottom;
     this->top_ = top;
-    std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
+    // std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
 }
 void Rect :: updateXY(int x, int y) {
     left_ += y;
@@ -104,6 +104,16 @@ const std::string GameObject :: GetUuid() {
 const int GameObject :: GetId() {
     return id_;
 }
+const bool GameObject :: IsSolid() {
+    return is_solid_;
+}
+void GameObject :: SetSolid(bool is_solid) {
+    this->is_solid_ = is_solid;
+}
+void GameObject :: SetCollider(Collider* collider) {
+    delete this->collider_;
+    this->collider_ = collider;
+}
 Transform* GameObject :: GetTransform() {
     return transform_;
 }
@@ -136,6 +146,6 @@ void GameObject :: Move(char inp) {
     int bottom = this->collider_->GetRect()->GetBottom();
     int top = this->collider_->GetRect()->GetTop();
     int right = this->collider_->GetRect()->GetRight();
-    std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
+    // std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
     
 }

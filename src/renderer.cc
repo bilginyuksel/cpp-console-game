@@ -37,11 +37,11 @@ std::string CLIRenderer :: getVisibleRegionPxData() {
 
 void CLIRenderer :: Render() {
   checkCollision();
-  // clearScene();
+  clearScene();
   draw();
   std::string screen = getVisibleRegionPxData();
   std::cout<<screen;
-  // clearScene();
+  clearScene();
 }
 
 void CLIRenderer :: draw() {
@@ -60,6 +60,20 @@ void CLIRenderer :: draw() {
     for(int i=xs; i<xe; i++)
       for(int j=ys; j<ye; j++)
         screen_scene_[i][j] = obj_vw[i-xs][j-ys];
+    // draw collider
+    Rect *r = obj->GetCollider()->GetRect();
+    int bot = r->GetBottom();
+    int top = r->GetTop();
+    int right = r->GetRight();
+    int left = r->GetLeft();
+    for(int i=top; i<bot; i++)  {
+      screen_scene_[i][right+1] = "|";
+      screen_scene_[i][left-1] = "|";
+    }
+    for(int i=left; i<right+1; i++) {
+      screen_scene_[top-1][i] = "-";
+      screen_scene_[bot][i] = "-";
+    }
   }
 }
 
