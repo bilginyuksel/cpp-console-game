@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include "position.h"
 #include "game_object.h"
 
 class CLIRenderer {

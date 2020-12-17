@@ -3,15 +3,15 @@
 
 #include <iostream>
 #include <vector>
+#include "position.h"
+#include "rect.h"
+#include "transform.h"
 
 const int rotationLeft = -1;
 const int rotationRight = 1;
 const int rotationStay = 0;
 
 class Collider;
-class Transform;
-class Position;
-class Rect;
 class GameObject;
 class Collision;
 
@@ -51,35 +51,6 @@ public:
   void SetCollision(Collision* collision);
 };
 
-class Transform {
-private:
-  int width_;
-  int height_;
-  int rotation_;
-  friend class GameObject;
-  Position *position_;
-  Rect *rect_;
-  void updateXY(int, int);
-public:
-  Transform(int x, int y, int width, int height, Rect*);
-  void SetPosition(int x, int y);
-  Position* GetPosition();
-  const int GetRotation();
-  const int GetWidth();
-  const int GetHeight();
-};
-
-class Position {
-private:
-  int x_;
-  int y_;
-public:
-  Position(int, int);
-  void SetX(int x);
-  void SetY(int y);
-  const int GetX();
-  const int GetY();
-};
 
 class Collision {
 public:
@@ -89,23 +60,6 @@ public:
   virtual void OnCollisionStay(GameObject &parent) = 0;
 };
 
-class Rect {
-private:
-  int left_;
-  int right_;
-  int bottom_;
-  int top_;
-  friend class Transform;
-  void updateXY(int x, int y);
-public:
-  Rect(int left, int right, int bottom, int top);
-  const int GetLeft();
-  const int GetRight();
-  const int GetBottom();
-  const int GetTop();
-  const bool Contains(const Rect &rect);
-  const bool Intersects(const Rect &rect);
-};
 
 
 #endif
