@@ -1,6 +1,9 @@
 #ifndef CAMERA_
 #define CAMERA_
 
+#include "../core/position.h"
+#include "../core/rect.h"
+
 class VisibleRegion;
 class Camera;
 
