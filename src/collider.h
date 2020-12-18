@@ -1,9 +1,12 @@
 #ifndef COLLIDER_
 #define COLLIDER_
+
+class Collision;
+class Collider;
+
 #include "rect.h"
 #include "game_object.h"
 
-class Collision;
 
 class Collider {
 private:
