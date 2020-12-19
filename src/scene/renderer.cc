@@ -39,14 +39,14 @@ std::string CLIRenderer :: getVisibleRegionPxData() {
 }
 
 void CLIRenderer :: Render() {
-//  checkCollision();
-	std::cout<<"Collision checked\n";
+ checkCollision();
+	// std::cout<<"Collision checked\n";
  	clearScene();
-	std::cout<<"Scene cleared.\n";
+	// std::cout<<"Scene cleared.\n";
   draw();
-	std::cout<<"Draw function ran.\n";
+	// std::cout<<"Draw function ran.\n";
   std::string screen = getVisibleRegionPxData();
-	std::cout<<"Get visible region px data..\n";
+	// std::cout<<"Get visible region px data..\n";
   std::cout<<screen;
   clearScene();
 }
@@ -64,28 +64,32 @@ void CLIRenderer :: draw() {
     int ys = position->GetY();
     int ye = position->GetY() + transform -> GetHeight();
     std::vector<std::vector<std::string>> obj_vw = obj->Draw();
-    std::cout<<"Obj draw function ran\n";
-	 	for(int i=ys; i<ye; i++) { 
+    // std::cout<<"Obj draw function ran\n";
+    // std::cout<<"Before Draw rows= "<<obj_vw.size()<<", columns= "<<obj_vw[0].size()<<"\n";
+   	// std::cout<<"Before Draw xs= "<<xs<<", xe= "<<xe<<"\n";
+    // std::cout<<"Before Draw ys= "<<ys<<", ye= "<<ye<<"\n";
+    for(int i=ys; i<ye; i++) { 
       for(int j=xs; j<xe; j++) {
-				std::cout<<"Screen scene[i][j]= "<<obj_vw[i-ys][j-xs]<<"\n";
-        screen_scene_[i][j] = obj_vw[i-ys][j-xs];
+        // std::cout<<", i= "<<j-xs<<", j= "<<i-ys<<"\n";
+        // std::cout<<"obj_vw[i][j]= "<<obj_vw[i-ys][j-xs]<<"\n";
+        screen_scene_[j][i] = obj_vw[i-ys][j-xs];
 			}
 		}
-		std::cout<<"Obj drawed to screen\n";
+		// std::cout<<"Obj drawed to screen\n";
 		// draw collider
-//    Rect *r = obj->GetCollider()->GetRect();
-//    int bot = r->GetBottom();
-//    int top = r->GetTop();
-//    int right = r->GetRight();
-//    int left = r->GetLeft();
-//    for(int i=top; i<bot; i++)  {
-//      screen_scene_[i][right+1] = "|";
-//      screen_scene_[i][left-1] = "|";
-//    }
-//    for(int i=left; i<right+1; i++) {
-//      screen_scene_[top-1][i] = "-";
-//      screen_scene_[bot][i] = "-";
-//    }
+   Rect *r = obj->GetCollider()->GetRect();
+   int bot = r->GetBottom();
+   int top = r->GetTop();
+   int right = r->GetRight();
+   int left = r->GetLeft();
+   for(int i=top; i<bot; i++)  {
+     screen_scene_[i][right+1] = "|";
+     screen_scene_[i][left-1] = "|";
+   }
+   for(int i=left; i<right+1; i++) {
+     screen_scene_[top-1][i] = "-";
+     screen_scene_[bot][i] = "-";
+   }
   }
 }
 

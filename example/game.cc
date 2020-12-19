@@ -18,7 +18,11 @@ public:
     Position *pos = transform_->GetPosition();
     int y = pos->GetY();
     int x = pos->GetX();
-    std::vector<std::vector<std::string>> obj_view(y + height, std::vector<std::string>(x + width, " "));
+    // std::cout<<"width= "<<width<<", height= "<<height<<"\n";
+    std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width , " "));
+    // std::cout<<"rows= "<<obj_view.size()<<", columns= "<<obj_view[0].size()<<"\n";
+    // std::cout<<"expected rows= "<<height<<", columns= "<<width<<"\n";
+
 
     obj_view[0][1] = "Y";
     obj_view[0][2] = "U";
@@ -78,7 +82,9 @@ public:
     Position *pos = transform_->GetPosition();
     int y = pos->GetY();
     int x = pos->GetX();
-    std::vector<std::vector<std::string>> obj_vw(y + height, std::vector<std::string>(x + width, " "));
+    std::vector<std::vector<std::string>> obj_vw(height, std::vector<std::string>(width, " "));
+    // std::cout<<"rows= "<<obj_vw.size()<<", columns= "<<obj_vw[0].size()<<"\n";
+    // std::cout<<"expected rows= "<<height<<", columns= "<<width<<"\n";
 
     for(int i=1; i<=5;i++)
       obj_vw[0][i] = "_";
@@ -117,20 +123,20 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject* g_object) 
 
 int main()
 {
-  Character *character = new Character(10, 20, 9, 9);
-	std::cout<<"Character initialized\n";
-	Box *box1 = new Box(30,50, 7, 7);
-	std::cout<<"Box1 initialized\n";
-  Box *box2 = new Box(30,70, 7, 7);
-	std::cout<<"Box2 initialized\n";
+  Character *character = new Character(10, 20, 9, 8);
+	// std::cout<<"Character initialized\n";
+	Box *box1 = new Box(30,50, 7, 3);
+	// std::cout<<"Box1 initialized\n";
+  Box *box2 = new Box(30,70, 7, 3);
+	// std::cout<<"Box2 initialized\n";
   CLIRenderer *renderer = new CLIRenderer();
-	std::cout<<"Renderer initialized\n";
+	// std::cout<<"Renderer initialized\n";
   renderer->AttachObject(character);
-	std::cout<<"Character Attached\n";
+	// std::cout<<"Character Attached\n";
   renderer->AttachObject(box1);
-	std::cout<<"Box1 Attached\n";
+	// std::cout<<"Box1 Attached\n";
   renderer->AttachObject(box2);
-	std::cout<<"Box2 Attached\n";
+	// std::cout<<"Box2 Attached\n";
 
   char input = '0';
   std::thread input_thread(getKeyboardInput, &input, renderer, character);
