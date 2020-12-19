@@ -3,8 +3,11 @@
 CLIRenderer :: CLIRenderer() {
   this->scene_max_x_ = 50;
   this->scene_max_y_ = 170;
-  for(int i=0; i<50; i++) {
-    std::vector<std::string> t(170, "");
+  this->scene_max_visible_x_ = 170;
+	this->scene_max_visible_y_ = 50;
+
+	for(int i=0; i<scene_max_visible_y_; i++) {
+    std::vector<std::string> t(scene_max_visible_x_, "");
     screen_scene_.push_back(t);
   }
 }
@@ -27,8 +30,8 @@ void CLIRenderer :: AttachObject(GameObject *g_object) {
 
 std::string CLIRenderer :: getVisibleRegionPxData() {
   std::string scene;
-  for(int i=0; i<scene_max_x_; i++) {
-    for(int j=0; j<scene_max_y_; j++)
+  for(int i=0; i<scene_max_visible_y_; i++) {
+    for(int j=0; j<scene_max_visible_x_; j++)
       scene += screen_scene_[i][j];
     scene += "\n";
   }
@@ -36,17 +39,21 @@ std::string CLIRenderer :: getVisibleRegionPxData() {
 }
 
 void CLIRenderer :: Render() {
-  checkCollision();
-  clearScene();
+//  checkCollision();
+	std::cout<<"Collision checked\n";
+ 	clearScene();
+	std::cout<<"Scene cleared.\n";
   draw();
+	std::cout<<"Draw function ran.\n";
   std::string screen = getVisibleRegionPxData();
+	std::cout<<"Get visible region px data..\n";
   std::cout<<screen;
   clearScene();
 }
 
 void CLIRenderer :: draw() {
-  for(int i=0; i<scene_max_x_; i++)
-    for(int j=0; j<scene_max_y_; j++)
+  for(int i=0; i<scene_max_visible_y_; i++)
+    for(int j=0; j<scene_max_visible_x_; j++)
       screen_scene_[i][j] = " ";
 
   for(GameObject *obj : game_objects_) {
@@ -57,23 +64,28 @@ void CLIRenderer :: draw() {
     int ys = position->GetY();
     int ye = position->GetY() + transform -> GetHeight();
     std::vector<std::vector<std::string>> obj_vw = obj->Draw();
-    for(int i=xs; i<xe; i++)
-      for(int j=ys; j<ye; j++)
-        screen_scene_[i][j] = obj_vw[i-xs][j-ys];
-    // draw collider
-    Rect *r = obj->GetCollider()->GetRect();
-    int bot = r->GetBottom();
-    int top = r->GetTop();
-    int right = r->GetRight();
-    int left = r->GetLeft();
-    for(int i=top; i<bot; i++)  {
-      screen_scene_[i][right+1] = "|";
-      screen_scene_[i][left-1] = "|";
-    }
-    for(int i=left; i<right+1; i++) {
-      screen_scene_[top-1][i] = "-";
-      screen_scene_[bot][i] = "-";
-    }
+    std::cout<<"Obj draw function ran\n";
+	 	for(int i=ys; i<ye; i++) { 
+      for(int j=xs; j<xe; j++) {
+				std::cout<<"Screen scene[i][j]= "<<obj_vw[i-ys][j-xs]<<"\n";
+        screen_scene_[i][j] = obj_vw[i-ys][j-xs];
+			}
+		}
+		std::cout<<"Obj drawed to screen\n";
+		// draw collider
+//    Rect *r = obj->GetCollider()->GetRect();
+//    int bot = r->GetBottom();
+//    int top = r->GetTop();
+//    int right = r->GetRight();
+//    int left = r->GetLeft();
+//    for(int i=top; i<bot; i++)  {
+//      screen_scene_[i][right+1] = "|";
+//      screen_scene_[i][left-1] = "|";
+//    }
+//    for(int i=left; i<right+1; i++) {
+//      screen_scene_[top-1][i] = "-";
+//      screen_scene_[bot][i] = "-";
+//    }
   }
 }
 

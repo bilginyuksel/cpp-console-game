@@ -5,8 +5,8 @@
 #include <conio.h>
 #include <thread>
 #include <memory>
-#include "../src/game_object.h"
-#include "../src/renderer.h"
+#include "../src/core/game_object.h"
+#include "../src/scene/renderer.h"
 
 class Character : public GameObject {
 public:
@@ -117,13 +117,20 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject* g_object) 
 
 int main()
 {
-  Character *character = new Character(10, 20, 8, 9);
-  Box *box1 = new Box(30,50, 7, 3);
-  Box *box2 = new Box(30,70, 7, 3);
+  Character *character = new Character(10, 20, 9, 9);
+	std::cout<<"Character initialized\n";
+	Box *box1 = new Box(30,50, 7, 7);
+	std::cout<<"Box1 initialized\n";
+  Box *box2 = new Box(30,70, 7, 7);
+	std::cout<<"Box2 initialized\n";
   CLIRenderer *renderer = new CLIRenderer();
+	std::cout<<"Renderer initialized\n";
   renderer->AttachObject(character);
+	std::cout<<"Character Attached\n";
   renderer->AttachObject(box1);
+	std::cout<<"Box1 Attached\n";
   renderer->AttachObject(box2);
+	std::cout<<"Box2 Attached\n";
 
   char input = '0';
   std::thread input_thread(getKeyboardInput, &input, renderer, character);

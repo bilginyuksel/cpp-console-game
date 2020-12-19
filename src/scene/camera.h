@@ -8,19 +8,20 @@ class VisibleRegion;
 class Camera;
 
 class VisibleRegion {
-public:
-    const int left_;
-    const int right_;
-    const int bottom_;
-    const int top_;
-    const int width_;
-    const int height_;
+private:
+    const int max_width_;
+    const int max_height_;
+
+    // If this can stay as constant. We can change the camera position
+    // and this will be updated automatically.
+    const Position *camera_center_;
+    Rect *visible_rect_;
+
 };
 
 class Camera {
 public:
-    int x_;
-    int y_;
+    Position *center_;
     // We can lock this center position to a game object.
     // That means they can share the same position reference.
     // Position *center; 
