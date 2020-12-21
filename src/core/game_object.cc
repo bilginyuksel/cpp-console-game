@@ -22,13 +22,17 @@ Transform* GameObject :: GetTransform() {
     return transform_;
 }
 GameObject :: GameObject(int x, int y, int width, int height) {
-    int left = y;
-    int right = y+width;
-    int top = x;
-    int bottom = x+height;
+    int left = x;
+    int right = x+width;
+    int bottom = y+height;
+    int top = y;
     Rect *rect = new Rect(left, right, bottom, top);
+    std::cout<<"left= "<<left<<", right= "<<right<<", top= "<<top<<", bottom= "<<bottom<<"\n";
     this->collider_ = new Collider(rect);
     this->transform_ = new Transform(x, y, width, height, rect);
+}
+void GameObject :: SetUuid(std::string uuid) {
+    this->uuid_ = uuid;
 }
 bool GameObject :: OnCollision(GameObject& intersected_obj) {
     std::cout<<"Collision happened";

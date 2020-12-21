@@ -23,7 +23,6 @@ public:
     // std::cout<<"rows= "<<obj_view.size()<<", columns= "<<obj_view[0].size()<<"\n";
     // std::cout<<"expected rows= "<<height<<", columns= "<<width<<"\n";
 
-
     obj_view[0][1] = "Y";
     obj_view[0][2] = "U";
     obj_view[0][3] = "K";
@@ -75,7 +74,8 @@ public:
 
 class Box : public GameObject {
 public:
-  Box(int x, int y, int w, int h) : GameObject(x, y, w, h){}
+  Box(int x, int y, int w, int h) : GameObject(x, y, w, h){
+  }
   std::vector<std::vector<std::string>> Draw() {
     int height = transform_->GetHeight();
     int width = transform_->GetWidth();
@@ -124,10 +124,13 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject* g_object) 
 int main()
 {
   Character *character = new Character(10, 20, 9, 8);
+	character->SetUuid("character");
 	// std::cout<<"Character initialized\n";
 	Box *box1 = new Box(30,30, 7, 3);
-	// std::cout<<"Box1 initialized\n";
+	box1->SetUuid("box1");
+  // std::cout<<"Box1 initialized\n";
   Box *box2 = new Box(30,40, 7, 3);
+	box2->SetUuid("box2");
 	// std::cout<<"Box2 initialized\n";
   CLIRenderer *renderer = new CLIRenderer();
 	// std::cout<<"Renderer initialized\n";

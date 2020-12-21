@@ -33,7 +33,8 @@ public:
   const bool IsSolid();
   void SetSolid(bool is_solid);
   void SetCollider(Collider*);
-  
+  void SetUuid(std::string uuid);
+
   Transform* GetTransform();
   const std::string GetUuid();
   const int GetId();
