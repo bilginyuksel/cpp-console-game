@@ -125,9 +125,9 @@ int main()
 {
   Character *character = new Character(10, 20, 9, 8);
 	// std::cout<<"Character initialized\n";
-	Box *box1 = new Box(30,50, 7, 3);
+	Box *box1 = new Box(30,30, 7, 3);
 	// std::cout<<"Box1 initialized\n";
-  Box *box2 = new Box(30,70, 7, 3);
+  Box *box2 = new Box(30,40, 7, 3);
 	// std::cout<<"Box2 initialized\n";
   CLIRenderer *renderer = new CLIRenderer();
 	// std::cout<<"Renderer initialized\n";

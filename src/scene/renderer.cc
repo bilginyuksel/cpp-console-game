@@ -72,24 +72,25 @@ void CLIRenderer :: draw() {
       for(int j=xs; j<xe; j++) {
         // std::cout<<", i= "<<j-xs<<", j= "<<i-ys<<"\n";
         // std::cout<<"obj_vw[i][j]= "<<obj_vw[i-ys][j-xs]<<"\n";
-        screen_scene_[j][i] = obj_vw[i-ys][j-xs];
+        // std::cout<<"i= "<<i<<", j= "<<j<<"........ max i= "<<screen_scene_.size()<<", j= "<<screen_scene_[0].size()<<"\n";
+        screen_scene_[i][j] = obj_vw[i-ys][j-xs];
 			}
 		}
 		// std::cout<<"Obj drawed to screen\n";
 		// draw collider
-   Rect *r = obj->GetCollider()->GetRect();
-   int bot = r->GetBottom();
-   int top = r->GetTop();
-   int right = r->GetRight();
-   int left = r->GetLeft();
-   for(int i=top; i<bot; i++)  {
-     screen_scene_[i][right+1] = "|";
-     screen_scene_[i][left-1] = "|";
-   }
-   for(int i=left; i<right+1; i++) {
-     screen_scene_[top-1][i] = "-";
-     screen_scene_[bot][i] = "-";
-   }
+  //  Rect *r = obj->GetCollider()->GetRect();
+  //  int bot = r->GetBottom();
+  //  int top = r->GetTop();
+  //  int right = r->GetRight();
+  //  int left = r->GetLeft();
+  //  for(int i=top; i<bot; i++)  {
+  //    screen_scene_[i][right+1] = "|";
+  //    screen_scene_[i][left-1] = "|";
+  //  }
+  //  for(int i=left; i<right+1; i++) {
+  //    screen_scene_[top-1][i] = "-";
+  //    screen_scene_[bot][i] = "-";
+  //  }
   }
 }
 
