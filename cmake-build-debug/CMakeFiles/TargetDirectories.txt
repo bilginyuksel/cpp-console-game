@@ -1,3 +1,0 @@
-C:/Users/bilgi/CLionProjects/CLIEngineDemo/cmake-build-debug/CMakeFiles/CLIEngineDemo.dir
-C:/Users/bilgi/CLionProjects/CLIEngineDemo/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/bilgi/CLionProjects/CLIEngineDemo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
