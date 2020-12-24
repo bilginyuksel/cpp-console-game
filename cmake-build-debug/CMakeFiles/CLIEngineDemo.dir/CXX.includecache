@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/bilgi/CLionProjects/CLIEngineDemo/engine/logger.cpp
+logger.h
+C:/Users/bilgi/CLionProjects/CLIEngineDemo/engine/logger.h
+
+C:/Users/bilgi/CLionProjects/CLIEngineDemo/engine/logger.h
+iostream
+-
+ctime
+-
+
