@@ -25,12 +25,12 @@ obj_width_height findVecObjectWidthHeight(const std::string& text_game_object) {
 
 std::vector<std::vector<std::string>> cnv::Str2Vec(const std::string& text_game_object) {
 
-    if(text_game_object.length() < 1)throw textGameObjectIsNotValid;
+    if(text_game_object.length() < 1) throw textGameObjectIsNotValid;
     obj_width_height wh = findVecObjectWidthHeight(text_game_object);
     // user doesn't have to write \n to last element.
     if(text_game_object[text_game_object.length()-1] != '\n') wh.height++;
 
-    std::vector<std::vector<std::string>> vec_game_obj(wh.height, std::vector<std::string>(wh.width, ""));
+    std::vector<std::vector<std::string>> vec_game_obj(wh.height, std::vector<std::string>(wh.width, " "));
     int curr_h =0, curr_w=0;
     for(char i : text_game_object) {
         if(i == '\n') {
@@ -42,4 +42,19 @@ std::vector<std::vector<std::string>> cnv::Str2Vec(const std::string& text_game_
     }
 
     return vec_game_obj;
+}
+
+std::vector<std::vector<std::string>> cnv::FromFile(const std::string &filename) {
+    std::ifstream ifstream;
+    ifstream.open(filename);
+    if(!ifstream.is_open()) throw fileCouldntFound;
+
+    std::string txt_obj;
+    std::string line;
+    while(std::getline(ifstream, line))
+        txt_obj += line + "\n";
+
+    ifstream.close();
+
+    return Str2Vec(txt_obj);
 }
