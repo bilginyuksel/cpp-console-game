@@ -78,7 +78,7 @@ void CLIRenderer::draw() {
                 screen_scene_[i][j] = obj_vw[i - ys][j - xs];
             }
         }
-        Log::d(tag, "Object drawed to screen");
+        Log::d(tag, "Object drawn to screen");
         // draw collider
         Rect *r = obj->GetCollider()->GetRect();
         int bot = r->GetBottom();

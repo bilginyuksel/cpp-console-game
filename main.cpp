@@ -84,6 +84,7 @@ public:
         std::vector<std::vector<std::string>> obj_vw(height, std::vector<std::string>(width, " "));
         Log::d(tag_, "expected rows= " + std::to_string(height) + ", columns= " + std::to_string(width) + "\n");
 
+
         for (int i = 1; i <= 5; i++)
             obj_vw[0][i] = "_";
         obj_vw[1][0] = "|";
