@@ -6,6 +6,7 @@
 #include <memory>
 #include "engine/core/game_object.h"
 #include "engine/scene/renderer.h"
+#include "engine/scene/obj_converter.h"
 
 
 class Character : public GameObject {
@@ -101,7 +102,8 @@ public:
           |00000|
           |_____|
         */
-        return obj_vw;
+        return cnv::FromFile("../../assets/box.txt");
+        //return obj_vw;
     }
 
     bool OnCollision(GameObject &o) override {
