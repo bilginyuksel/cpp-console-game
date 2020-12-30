@@ -1,5 +1,5 @@
 //
-// Created by bilgi on 12/24/2020.
+// Created by bilginyuksel on 12/24/2020.
 //
 
 #include "rect.h"

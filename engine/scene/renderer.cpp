@@ -80,21 +80,21 @@ void CLIRenderer::draw() {
         }
         Log::d(tag, "Object drawn to screen");
         // draw collider
-        Rect *r = obj->GetCollider()->GetRect();
-        int bot = r->GetBottom();
-        int top = r->GetTop();
-        int right = r->GetRight();
-        int left = r->GetLeft();
+        Rect r = obj->GetCollider()->GetRectR();
+        int bot = r.GetBottom();
+        int top = r.GetTop();
+        int right = r.GetRight();
+        int left = r.GetLeft();
         Log::d(tag, "uuid= " + obj->GetUuid());
         Log::d(tag, "left= " + std::to_string(left) + ", right= " + std::to_string(right) +
                     ", top= " + std::to_string(top) + ", bottom= " + std::to_string(bot));
-        for (int i = bot; i < right; i++) {
-            screen_scene_[i][left - 1] = "|";
-            screen_scene_[i][top + 1] = "|";
+        for (int i = bot; i < top; i++) {
+            screen_scene_[i][left] = "|";
+            screen_scene_[i][right] = "|";
         }
-        for (int i = left; i < top; i++) {
-            screen_scene_[right][i] = "-";
-            screen_scene_[bot - 1][i] = "-";
+        for (int i = left; i < right; i++) {
+            screen_scene_[top][i] = "-";
+            screen_scene_[bot][i] = "-";
         }
     }
 }

@@ -33,6 +33,7 @@ GameObject :: GameObject(int x, int y, int width, int height) {
     std::cout<<"left= "<<left<<", right= "<<right<<", top= "<<top<<", bottom= "<<bottom<<"\n";
     this->collider_ = new Collider(rect);
     this->transform_ = new Transform(x, y, width, height, rect);
+    this->collider_->SetCenter(this->transform_->GetPosition());
 }
 void GameObject :: SetUuid(std::string uuid) {
     this->uuid_ = uuid;

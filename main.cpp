@@ -102,8 +102,8 @@ public:
           |00000|
           |_____|
         */
-        return cnv::FromFile("../../assets/box.txt");
-        //return obj_vw;
+        //return cnv::FromFile("../assets/box.txt");
+        return obj_vw;
     }
 
     bool OnCollision(GameObject &o) override {
@@ -126,13 +126,13 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) 
 
 int main() {
     Log::SetEnabled(true);
-    Character *character = new Character(10, 20, 9, 8);
+    auto *character = new Character(10, 20, 9, 8);
     character->SetUuid("character");
     Box *box1 = new Box(30, 30, 7, 3);
     box1->SetUuid("box1");
     Box *box2 = new Box(30, 40, 7, 3);
     box2->SetUuid("box2");
-    CLIRenderer *renderer = new CLIRenderer();
+    auto *renderer = new CLIRenderer();
     renderer->AttachObject(character);
     renderer->AttachObject(box1);
     renderer->AttachObject(box2);

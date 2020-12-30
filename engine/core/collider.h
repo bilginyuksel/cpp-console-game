@@ -24,6 +24,7 @@ public:
     Rect* GetRect();
     Rect GetRectR();
     void SetCollision(Collision* collision);
+    void SetCenter(Position* center);
 };
 
 
