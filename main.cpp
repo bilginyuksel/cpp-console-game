@@ -69,6 +69,19 @@ public:
                   << "}\n";
         return false;
     }
+
+	void onInputTriggered(char input) override {
+		Log::d(tag, "input ==> " + std::to_string(input));
+
+		if(input == 'H') // up
+		   transform_->GetPosition()->SetY(transform_->GetPosition()->GetY() - 1);
+		else if(input == 'P') // down
+            transform_->GetPosition()->SetY(transform_->GetPosition()->GetY() + 1);
+        else if(input == 'M') // right
+            transform_->GetPosition()->SetX(transform_->GetPosition()->GetX() + 1);
+        else if(input == 'K') // left
+            transform_->GetPosition()->SetX(transform_->GetPosition()->GetX() - 1);
+    }
 };
 
 class Box : public GameObject {
@@ -120,7 +133,7 @@ public:
 void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) {
     while (*input != 'q') {
         *input = getch();
-        g_object->Move(*input);
+        g_object->onInputTriggered(*input);
     }
 }
 

@@ -45,6 +45,19 @@ bool GameObject :: OnCollision(GameObject& intersected_obj) {
 Collider* GameObject :: GetCollider() {
     return collider_;
 }
-void GameObject :: onInputTriggered(char input) {
-	
+void GameObject :: Move(char inp) {
+    if(inp == 'H')
+        transform_->updateXY(-1, 0);
+    else if(inp == 'P')
+        transform_->updateXY(1, 0);
+    else if(inp == 'M')
+        transform_->updateXY(0, 1);
+    else if(inp == 'K')
+        transform_->updateXY(0, -1);
+    int left = this->collider_->GetRect()->GetLeft();
+    int bottom = this->collider_->GetRect()->GetBottom();
+    int top = this->collider_->GetRect()->GetTop();
+    int right = this->collider_->GetRect()->GetRight();
+    // std::cout<<"{left:"<<left<<", right:"<<right<<", bottom:"<<bottom<<", top:"<<top<<"}\n";
+
 }
