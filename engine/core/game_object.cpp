@@ -14,6 +14,9 @@ std::string GameObject :: GetUuid() const {
 int GameObject :: GetId() const {
     return id_;
 }
+void GameObject::SetId(int id) {
+    this->id_ = id;
+}
 bool GameObject :: IsSolid() const {
     return is_solid_;
 }

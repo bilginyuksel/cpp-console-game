@@ -7,6 +7,9 @@
 #include "engine/core/game_object.h"
 #include "engine/scene/renderer.h"
 #include "engine/scene/obj_converter.h"
+
+int characterCount = 0;
+
 class Hasan : public GameObject {
 public:
     std::string tag_ = "Hasan";
@@ -382,24 +385,33 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) 
     }
 }
 
+
 int main() {
     //Log::SetEnabled(true);
     auto *character = new Character(10, 20, 9, 8);
     character->SetUuid("character");
+    character->SetId(characterCount++);
     auto *hasan = new Hasan(30, 10, 9, 8);
     hasan->SetUuid("hasan");
+    hasan->SetId(characterCount++);
     auto *yasin = new Yasin(40, 10, 9, 8);
     yasin->SetUuid("yasin");
+    yasin->SetId(characterCount++);
     auto *bayram = new Bayram(10, 20, 9, 8);
+    bayram->SetId(characterCount++);
     bayram->SetUuid("bayram");
     auto *can = new Can(50, 10, 9, 8);
+    can->SetId(characterCount++);
     can->SetUuid("can");
     auto *bashir = new Bashir(10, 30, 9, 8);
+    bashir->SetId(characterCount++);
     bashir->SetUuid("bashir");
 
     Box *box1 = new Box(30, 30, 7, 3);
     box1->SetUuid("box1");
+    box1->SetId(characterCount++);
     Box *box2 = new Box(30, 40, 7, 3);
+    box2->SetId(characterCount++);
     box2->SetUuid("box2");
     auto *renderer = new CLIRenderer();
     renderer->AttachObject(character);

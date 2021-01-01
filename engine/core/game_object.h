@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 class GameObject;
 
@@ -39,6 +40,7 @@ public:
     bool IsSolid() const;
     void SetSolid(bool is_solid);
     void SetCollider(Collider*);
+    void SetId(int id);
     void SetUuid(std::string uuid);
 
     Transform* GetTransform();
@@ -53,6 +55,7 @@ public:
 private:
     void onPositionChangedInternal();
     void updateRectPosition();
+
 };
 
 
