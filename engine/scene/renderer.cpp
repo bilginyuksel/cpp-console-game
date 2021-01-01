@@ -61,44 +61,54 @@ void CLIRenderer::draw() {
             screen_scene_[i][j] = " ";
 
     for (GameObject *obj : game_objects_) {
-        Transform *transform = obj->GetTransform();
-        Position *position = transform->GetPosition();
-        int xs = position->GetX();
-        int xe = position->GetX() + transform->GetWidth();
-        int ys = position->GetY();
-        int ye = position->GetY() + transform->GetHeight();
+//        Transform *transform = obj->GetTransform();
+//        Position *position = transform->GetPosition();
+//        int width = transform->GetWidth();
+//        int height = transform->GetHeight();
+//        int xs = position->GetX() - width/2;
+//        int xe = position->GetX() + (width + 1)/2;
+//        int ys = position->GetY() - height/2 ;
+//        int ye = position->GetY() + (height + 1)/2;
         std::vector<std::vector<std::string>> obj_vw = obj->Draw();
-        Log::d(tag, "Obj draw function ran");
-        Log::d(tag,
-               "Before draw rows= " + std::to_string(obj_vw.size()) + ", columns= " + std::to_string(obj_vw[0].size()));
-        Log::d(tag, "Before draw xs= " + std::to_string(xs) + ", xe= " + std::to_string(xe));
-        Log::d(tag, "Before draw ys= " + std::to_string(ys) + ", ye= " + std::to_string(ye));
+//        Log::d(tag, "Obj draw function ran");
+//        Log::d(tag,
+//               "Before draw rows= " + std::to_string(obj_vw.size()) + ", columns= " + std::to_string(obj_vw[0].size()));
+//        Log::d(tag, "Before draw xs= " + std::to_string(xs) + ", xe= " + std::to_string(xe));
+//        Log::d(tag, "Before draw ys= " + std::to_string(ys) + ", ye= " + std::to_string(ye));
+        int ys = obj->obj_border_rect_->GetTop();
+        int ye = obj->obj_border_rect_->GetBottom();
+        int xs = obj->obj_border_rect_->GetLeft();
+        int xe = obj->obj_border_rect_->GetRight();
         for (int i = ys; i < ye; i++) {
             for (int j = xs; j < xe; j++) {
                 screen_scene_[i][j] = obj_vw[i - ys][j - xs];
             }
         }
         Log::d(tag, "Object drawn to screen");
-        // draw collider
-        Rect r = obj->GetCollider()->GetRectR();
-        int bot = r.GetBottom();
-        int top = r.GetTop();
-        int right = r.GetRight();
-        int left = r.GetLeft();
-        Log::d(tag, "uuid= " + obj->GetUuid());
-        Log::d(tag, "left= " + std::to_string(left) + ", right= " + std::to_string(right) +
-                    ", top= " + std::to_string(top) + ", bottom= " + std::to_string(bot));
-        for (int i = bot; i < top; i++) {
-            screen_scene_[i][left] = "|";
-            screen_scene_[i][right] = "|";
-        }
-        for (int i = left; i < right; i++) {
-            screen_scene_[top][i] = "-";
-            screen_scene_[bot][i] = "-";
-        }
+        drawCollider(obj);
     }
 }
 
+
+void CLIRenderer :: drawCollider(GameObject * const game_object) {
+        Rect rect = *game_object->obj_border_rect_;
+        int bot = rect.GetBottom();
+        int top = rect.GetTop() - 1;
+        int right = rect.GetRight();
+        int left = rect.GetLeft() - 1;
+        Log::d(tag, "uuid= " + game_object->GetUuid());
+        Log::d(tag, "left= " + std::to_string(left) + ", right= " + std::to_string(right) +
+                    ", top= " + std::to_string(top) + ", bottom= " + std::to_string(bot));
+        for (int i = top; i <= bot; i++) {
+            screen_scene_[i][left] = "|";
+            screen_scene_[i][right] = "|";
+        }
+        for (int i = left; i <= right; i++) {
+            screen_scene_[top][i] = "-";
+            screen_scene_[bot][i] = "-";
+        }
+    
+}
 
 void CLIRenderer::checkCollision() {
     for (int i = 0; i < game_objects_.size(); i++) {

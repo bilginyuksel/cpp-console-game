@@ -15,15 +15,13 @@ private:
     int rotation_;
     friend class GameObject;
     Position *position_;
-    Rect *rect_;
-    void updateXY(int, int);
 public:
-    Transform(int x, int y, int width, int height, Rect*);
+    Transform(int x, int y, int width, int height);
     void SetPosition(int x, int y);
     Position* GetPosition();
-    const int GetRotation();
-    const int GetWidth();
-    const int GetHeight();
+    int GetRotation() const;
+    int GetWidth() const;
+    int GetHeight() const;
 };
 
 #endif //CLIENGINEDEMO_TRANSFORM_H

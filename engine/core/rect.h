@@ -7,6 +7,7 @@
 
 class Rect {
 private:
+
     int left_;
     int right_;
     int bottom_;
@@ -14,22 +15,27 @@ private:
 
 public:
     Rect(int left, int top, int right, int bottom);
+    Rect();
 
-    const int GetLeft();
-    const int GetRight();
-    const int GetBottom();
-    const int GetTop();
+    int GetLeft() const;
+    int GetRight() const;
+    int GetBottom() const;
+    int GetTop() const;
 
-    //void SetRect(int left, int top, int right, int bottom);
+   // void SetRect(int left, int top, int right, int bottom);
+    void SetLeft(int left);
+    void SetRight(int right);
+    void SetTop(int top);
+    void SetBottom(int bottom);
 
-    const bool Intersects(const Rect&);
+    bool Intersects(const Rect&) const;
     // const bool Intersects(const Rect*);
     // const bool Intersects(const Rect);
 
     // const bool Contains(const Rect*);
     // const bool Contains(const Rect);
-    const bool Contains(const Rect&);
-    const bool Contains(int x, int y);
+    bool Contains(const Rect&) const;
+    bool Contains(int x, int y) const;
 };
 
 

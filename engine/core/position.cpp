@@ -9,18 +9,10 @@ Position :: Position(int x, int y){
     this->y_ = y;
 }
 
-void Position :: SetX(int x) {
-    this->x_ = x;
-}
-
-void Position :: SetY(int y) {
-    this->y_ = y;
-}
-
-const int Position :: GetX() {
+int Position :: GetX() const {
     return this->x_;
 }
 
-const int Position :: GetY() {
+int Position :: GetY() const {
     return this->y_;
 }

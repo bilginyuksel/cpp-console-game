@@ -9,14 +9,11 @@ class Position {
 private:
     int x_;
     int y_;
-
+    friend class Transform;
 public:
-
     Position(int x, int y);
-    void SetX(int x);
-    void SetY(int y);
-    const int GetY();
-    const int GetX();
+    int GetY() const;
+    int GetX() const;
 };
 
 #endif //CLIENGINEDEMO_POSITION_H

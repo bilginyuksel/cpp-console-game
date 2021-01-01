@@ -71,16 +71,19 @@ public:
     }
 
 	void onInputTriggered(char input) override {
-		Log::d(tag, "input ==> " + std::to_string(input));
+        int x = transform_->GetPosition()->GetX();
+        int y = transform_->GetPosition()->GetY();
 
 		if(input == 'H') // up
-		   transform_->GetPosition()->SetY(transform_->GetPosition()->GetY() - 1);
+		   transform_->SetPosition(x, y - 1);
 		else if(input == 'P') // down
-            transform_->GetPosition()->SetY(transform_->GetPosition()->GetY() + 1);
+            transform_->SetPosition(x, y + 1);
         else if(input == 'M') // right
-            transform_->GetPosition()->SetX(transform_->GetPosition()->GetX() + 1);
+            transform_->SetPosition(x + 1, y);
         else if(input == 'K') // left
-            transform_->GetPosition()->SetX(transform_->GetPosition()->GetX() - 1);
+            transform_->SetPosition(x - 1, y);
+
+        GameObject :: onInputTriggered(input);
     }
 };
 
@@ -138,7 +141,7 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) 
 }
 
 int main() {
-    Log::SetEnabled(true);
+    //Log::SetEnabled(true);
     auto *character = new Character(10, 20, 9, 8);
     character->SetUuid("character");
     Box *box1 = new Box(30, 30, 7, 3);

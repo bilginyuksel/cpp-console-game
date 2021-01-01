@@ -25,10 +25,10 @@ private:
     std::vector<GameObject*> game_objects_;
 
     std::string getVisibleRegionPxData();
-    void clearScene();
+    static void clearScene();
     void draw();
     void checkCollision();
-
+    void drawCollider(GameObject * game_object);
 public:
     std::vector<std::string> log_;
 

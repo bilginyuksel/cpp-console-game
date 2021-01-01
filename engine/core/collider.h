@@ -14,17 +14,13 @@ class Collider;
 
 class Collider {
 private:
-    Position *center_;
     Rect *rect_;
-    Collision *collision_;
+    Collision *collision_{};
 public:
     Collider(int left, int right, int bottom, int top);
-    Collider(Rect*);
-    Collider(Position *pos);
+    explicit Collider(Rect*);
     Rect* GetRect();
-    Rect GetRectR();
     void SetCollision(Collision* collision);
-    void SetCenter(Position* center);
 };
 
 

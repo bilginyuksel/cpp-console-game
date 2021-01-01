@@ -27,24 +27,32 @@ protected:
     Transform *transform_;
 private:
     std::string uuid_;
-    int id_;
-    bool is_solid_;
-    bool updateObjPosition();
+    int id_{};
+    bool is_solid_{};
+public:
+    Rect *obj_border_rect_;
 public:
     GameObject(int x, int y, int width, int height);
     virtual std::vector<std::vector<std::string>> Draw() = 0;
     virtual bool OnCollision(GameObject&);
 
-    const bool IsSolid();
+    bool IsSolid() const;
     void SetSolid(bool is_solid);
     void SetCollider(Collider*);
     void SetUuid(std::string uuid);
 
     Transform* GetTransform();
-    const std::string GetUuid();
-    const int GetId();
+    std::string GetUuid() const;
+    int GetId() const;
     Collider* GetCollider();
+
 	virtual void onInputTriggered(char input);
+    virtual bool onPositionChangeRequested(int x, int y);
+    // new position will be the transform's current position.
+    virtual void onPositionChanged();
+private:
+    void onPositionChangedInternal();
+    void updateRectPosition();
 };
 
 

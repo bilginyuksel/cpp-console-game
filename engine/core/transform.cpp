@@ -7,26 +7,22 @@
 Position* Transform :: GetPosition() {
     return position_;
 }
-const int Transform :: GetRotation() {
+int Transform :: GetRotation() const {
     return rotation_;
 }
-const int Transform :: GetWidth() {
+int Transform :: GetWidth() const {
     return width_;
 }
-const int Transform :: GetHeight() {
+int Transform :: GetHeight() const {
     return height_;
 }
-void Transform :: updateXY(int x, int y){
-    this->position_->SetX(this->position_->GetX()+x);
-    this->position_->SetY(this->position_->GetY()+y);
-}
 void Transform :: SetPosition(int x, int y) {
-    this->position_->SetX(x);
-    this->position_->SetY(y);
+    this->position_->x_ = x;
+    this->position_->y_ = y;
 }
-Transform :: Transform(int x, int y, int width, int height, Rect* rec) {
+Transform :: Transform(int x, int y, int width, int height) {
+    this->rotation_ = 0;
     this->width_ = width;
     this->height_ = height;
-    this->rect_ = rec;
     this->position_ = new Position(x, y);
 }
