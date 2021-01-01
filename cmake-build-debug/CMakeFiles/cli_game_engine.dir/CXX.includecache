@@ -7,6 +7,14 @@
 #IncludeRegexTransform: 
 
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
+vector
+-
+iostream
+-
+string
+-
+unordered_map
+-
 rect.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
 game_object.h

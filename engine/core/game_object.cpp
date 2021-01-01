@@ -37,19 +37,21 @@ GameObject :: GameObject(int x, int y, int width, int height) {
     int top = y - half_height;
 
     this->transform_ = new Transform(x, y, width, height);
-    obj_border_rect_ = new Rect();
+    this->obj_border_rect_ = new Rect();
     // updateRectPosition uses transform so transform should be initialized before calling it.
     updateRectPosition();
 
-    Rect *rect = new Rect(left, top, right, bottom);
     std::cout<<"left= "<<left<<", right= "<<right<<", top= "<<top<<", bottom= "<<bottom<<"\n";
-    this->collider_ = new Collider(rect);
+    this->collider_ = new Collider(*obj_border_rect_, 2, 1);
 }
 void GameObject :: SetUuid(std::string uuid) {
     this->uuid_ = std::move(uuid);
 }
-bool GameObject :: OnCollision(GameObject& intersected_obj) {
-    std::cout<<"Collision happened";
+
+// collision happened with an object. Send information to collider and trigger 
+// collision functions.
+bool GameObject :: onCollisionInternal(GameObject& intersected_obj) {
+    collider_->updateCollision(intersected_obj);
     return false;
 }
 Collider* GameObject :: GetCollider() {
@@ -75,7 +77,7 @@ void GameObject :: updateRectPosition() {
 }
 
 void GameObject :: onPositionChangedInternal() {
-
+    updateRectPosition();
 }
 
 void GameObject :: onInputTriggered(char input) {

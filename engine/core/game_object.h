@@ -34,7 +34,7 @@ public:
 public:
     GameObject(int x, int y, int width, int height);
     virtual std::vector<std::vector<std::string>> Draw() = 0;
-    virtual bool OnCollision(GameObject&);
+    bool onCollisionInternal(GameObject&);
 
     bool IsSolid() const;
     void SetSolid(bool is_solid);

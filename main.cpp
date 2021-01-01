@@ -7,30 +7,27 @@
 #include "engine/core/game_object.h"
 #include "engine/scene/renderer.h"
 #include "engine/scene/obj_converter.h"
-
-
-class Character : public GameObject {
+class Hasan : public GameObject {
 public:
-    std::string tag_ = "Character";
+    std::string tag_ = "Hasan";
 
-    Character(int x, int y, int width, int height) : GameObject(x, y, width, height) {
+    Hasan(int x, int y, int width, int height) : GameObject(x, y, width, height) {
     }
 
     std::vector<std::vector<std::string>> Draw() override {
         int height = transform_->GetHeight();
         int width = transform_->GetWidth();
         std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
-        Log::d(tag_, "expected rows= " + std::to_string(height) + ", columns= " + std::to_string(width) + "\n");
-        obj_view[0][1] = "Y";
-        obj_view[0][2] = "U";
-        obj_view[0][3] = "K";
+        obj_view[0][2] = "H";
+        obj_view[0][3] = "A";
         obj_view[0][4] = "S";
-        obj_view[0][5] = "E";
-        obj_view[0][6] = "L";
+        obj_view[0][5] = "A";
+        obj_view[0][6] = "N";
 
         obj_view[1][3] = "[";
-        obj_view[1][4] = "5";
-        obj_view[1][5] = "]";
+        obj_view[1][4] = "2";
+        obj_view[1][5] = "3";
+        obj_view[1][6] = "]";
 
         for (int i = 1; i < 8; i++)
             obj_view[2][i] = "-";
@@ -60,30 +57,284 @@ public:
         return obj_view;
     }
 
-    bool OnCollision(GameObject &o) override {
-        int left = this->collider_->GetRect()->GetLeft();
-        int bottom = this->collider_->GetRect()->GetBottom();
-        int top = this->collider_->GetRect()->GetTop();
-        int right = this->collider_->GetRect()->GetRight();
-        std::cout << "Character{left:" << left << ", bottom:" << bottom << ", top:" << top << ", right:" << right
-                  << "}\n";
-        return false;
+
+};
+class Yasin : public GameObject {
+public:
+    std::string tag_ = "Hasan";
+
+    Yasin(int x, int y, int width, int height) : GameObject(x, y, width, height) {
     }
 
-	void onInputTriggered(char input) override {
+    std::vector<std::vector<std::string>> Draw() override {
+        int height = transform_->GetHeight();
+        int width = transform_->GetWidth();
+        std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
+        obj_view[0][2] = "Y";
+        obj_view[0][3] = "A";
+        obj_view[0][4] = "S";
+        obj_view[0][5] = "I";
+        obj_view[0][6] = "N";
+
+        obj_view[1][3] = "[";
+        obj_view[1][4] = "1";
+        obj_view[1][5] = "7";
+        obj_view[1][6] = "]";
+
+        for (int i = 1; i < 8; i++)
+            obj_view[2][i] = "-";
+
+        obj_view[3][1] = "|";
+        obj_view[3][4] = "|";
+        obj_view[3][7] = "|";
+
+        obj_view[4][1] = "|";
+        obj_view[4][4] = "|";
+        obj_view[4][7] = "|";
+
+        obj_view[5][4] = "|";
+
+        obj_view[6][2] = "/";
+        obj_view[6][3] = "/";
+        obj_view[6][5] = "\\";
+        obj_view[6][6] = "\\";
+
+        obj_view[7][0] = "_";
+        obj_view[7][1] = "/";
+        obj_view[7][2] = "/";
+        obj_view[7][6] = "\\";
+        obj_view[7][7] = "\\";
+        obj_view[7][8] = "_";
+
+        return obj_view;
+    }
+
+
+};
+class Bayram : public GameObject {
+public:
+    std::string tag_ = "Hasan";
+
+    Bayram(int x, int y, int width, int height) : GameObject(x, y, width, height) {
+    }
+
+    std::vector<std::vector<std::string>> Draw() override {
+        int height = transform_->GetHeight();
+        int width = transform_->GetWidth();
+        std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
+        obj_view[0][2] = "B";
+        obj_view[0][3] = "A";
+        obj_view[0][4] = "Y";
+        obj_view[0][5] = "R";
+        obj_view[0][6] = "A";
+        obj_view[0][7] = "M";
+
+        obj_view[1][3] = "[";
+        obj_view[1][4] = "7";
+        obj_view[1][5] = "2";
+        obj_view[1][6] = "]";
+
+        for (int i = 1; i < 8; i++)
+            obj_view[2][i] = "-";
+
+        obj_view[3][1] = "|";
+        obj_view[3][4] = "|";
+        obj_view[3][7] = "|";
+
+        obj_view[4][1] = "|";
+        obj_view[4][4] = "|";
+        obj_view[4][7] = "|";
+
+        obj_view[5][4] = "|";
+
+        obj_view[6][2] = "/";
+        obj_view[6][3] = "/";
+        obj_view[6][5] = "\\";
+        obj_view[6][6] = "\\";
+
+        obj_view[7][0] = "_";
+        obj_view[7][1] = "/";
+        obj_view[7][2] = "/";
+        obj_view[7][6] = "\\";
+        obj_view[7][7] = "\\";
+        obj_view[7][8] = "_";
+
+        return obj_view;
+    }
+
+
+};
+class Can : public GameObject {
+public:
+    std::string tag_ = "Hasan";
+
+    Can(int x, int y, int width, int height) : GameObject(x, y, width, height) {
+    }
+
+    std::vector<std::vector<std::string>> Draw() override {
+        int height = transform_->GetHeight();
+        int width = transform_->GetWidth();
+        std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
+        obj_view[0][3] = "C";
+        obj_view[0][4] = "A";
+        obj_view[0][5] = "N";
+
+        obj_view[1][3] = "[";
+        obj_view[1][4] = "0";
+        obj_view[1][5] = "2";
+        obj_view[1][6] = "]";
+
+        for (int i = 1; i < 8; i++)
+            obj_view[2][i] = "-";
+
+        obj_view[3][1] = "|";
+        obj_view[3][4] = "|";
+        obj_view[3][7] = "|";
+
+        obj_view[4][1] = "|";
+        obj_view[4][4] = "|";
+        obj_view[4][7] = "|";
+
+        obj_view[5][4] = "|";
+
+        obj_view[6][2] = "/";
+        obj_view[6][3] = "/";
+        obj_view[6][5] = "\\";
+        obj_view[6][6] = "\\";
+
+        obj_view[7][0] = "_";
+        obj_view[7][1] = "/";
+        obj_view[7][2] = "/";
+        obj_view[7][6] = "\\";
+        obj_view[7][7] = "\\";
+        obj_view[7][8] = "_";
+
+        return obj_view;
+    }
+
+
+};
+class Bashir : public GameObject {
+public:
+    std::string tag_ = "Hasan";
+
+    Bashir(int x, int y, int width, int height) : GameObject(x, y, width, height) {
+    }
+
+    std::vector<std::vector<std::string>> Draw() override {
+        int height = transform_->GetHeight();
+        int width = transform_->GetWidth();
+        std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
+        obj_view[0][2] = "B";
+        obj_view[0][3] = "A";
+        obj_view[0][4] = "S";
+        obj_view[0][5] = "H";
+        obj_view[0][6] = "I";
+        obj_view[0][7] = "R";
+
+        obj_view[1][3] = "[";
+        obj_view[1][4] = "0";
+        obj_view[1][5] = "4";
+        obj_view[1][6] = "]";
+
+        for (int i = 1; i < 8; i++)
+            obj_view[2][i] = "-";
+
+        obj_view[3][1] = "|";
+        obj_view[3][4] = "|";
+        obj_view[3][7] = "|";
+
+        obj_view[4][1] = "|";
+        obj_view[4][4] = "|";
+        obj_view[4][7] = "|";
+
+        obj_view[5][4] = "|";
+
+        obj_view[6][2] = "/";
+        obj_view[6][3] = "/";
+        obj_view[6][5] = "\\";
+        obj_view[6][6] = "\\";
+
+        obj_view[7][0] = "_";
+        obj_view[7][1] = "/";
+        obj_view[7][2] = "/";
+        obj_view[7][6] = "\\";
+        obj_view[7][7] = "\\";
+        obj_view[7][8] = "_";
+
+        return obj_view;
+    }
+
+
+};
+
+class Character : public GameObject {
+public:
+    std::string tag_ = "Character";
+
+    Character(int x, int y, int width, int height) : GameObject(x, y, width, height) {
+    }
+
+    std::vector<std::vector<std::string>> Draw() override {
+        int height = transform_->GetHeight();
+        int width = transform_->GetWidth();
+        std::vector<std::vector<std::string>> obj_view(height, std::vector<std::string>(width, " "));
+        Log::d(tag_, "expected rows= " + std::to_string(height) + ", columns= " + std::to_string(width) + "\n");
+        obj_view[0][2] = "Y";
+        obj_view[0][3] = "U";
+        obj_view[0][4] = "K";
+        obj_view[0][5] = "S";
+        obj_view[0][6] = "E";
+        obj_view[0][7] = "L";
+
+        obj_view[1][3] = "[";
+        obj_view[1][4] = "9";
+        obj_view[1][5] = "9";
+        obj_view[1][6] = "]";
+
+        for (int i = 1; i < 8; i++)
+            obj_view[2][i] = "-";
+
+        obj_view[3][1] = "|";
+        obj_view[3][4] = "|";
+        obj_view[3][7] = "|";
+
+        obj_view[4][1] = "|";
+        obj_view[4][4] = "|";
+        obj_view[4][7] = "|";
+
+        obj_view[5][4] = "|";
+
+        obj_view[6][2] = "/";
+        obj_view[6][3] = "/";
+        obj_view[6][5] = "\\";
+        obj_view[6][6] = "\\";
+
+        obj_view[7][0] = "_";
+        obj_view[7][1] = "/";
+        obj_view[7][2] = "/";
+        obj_view[7][6] = "\\";
+        obj_view[7][7] = "\\";
+        obj_view[7][8] = "_";
+
+        return obj_view;
+    }
+
+    void onInputTriggered(char input) override {
         int x = transform_->GetPosition()->GetX();
         int y = transform_->GetPosition()->GetY();
 
-		if(input == 'H') // up
-		   transform_->SetPosition(x, y - 1);
-		else if(input == 'P') // down
+        if (input == 'H') {// up
+            transform_->SetPosition(x, y - 1);
+        } else if (input == 'P') {// down
             transform_->SetPosition(x, y + 1);
-        else if(input == 'M') // right
+        } else if (input == 'M') {// right
             transform_->SetPosition(x + 1, y);
-        else if(input == 'K') // left
+        } else if (input == 'K') { // left
             transform_->SetPosition(x - 1, y);
+        }
 
-        GameObject :: onInputTriggered(input);
+        GameObject::onInputTriggered(input);
     }
 };
 
@@ -122,15 +373,6 @@ public:
         return obj_vw;
     }
 
-    bool OnCollision(GameObject &o) override {
-        int left = this->collider_->GetRect()->GetLeft();
-        int bottom = this->collider_->GetRect()->GetBottom();
-        int top = this->collider_->GetRect()->GetTop();
-        int right = this->collider_->GetRect()->GetRight();
-        Log::d(tag_, "Box{left:" + std::to_string(left) + ", bottom:" + std::to_string(bottom) +
-                     ", top:" + std::to_string(top) + ", right:" + std::to_string(right) + "}\n");
-        return false;
-    }
 };
 
 void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) {
@@ -144,15 +386,30 @@ int main() {
     //Log::SetEnabled(true);
     auto *character = new Character(10, 20, 9, 8);
     character->SetUuid("character");
+    auto *hasan = new Hasan(30, 10, 9, 8);
+    hasan->SetUuid("hasan");
+    auto *yasin = new Yasin(40, 10, 9, 8);
+    yasin->SetUuid("yasin");
+    auto *bayram = new Bayram(10, 20, 9, 8);
+    bayram->SetUuid("bayram");
+    auto *can = new Can(50, 10, 9, 8);
+    can->SetUuid("can");
+    auto *bashir = new Bashir(10, 30, 9, 8);
+    bashir->SetUuid("bashir");
+
     Box *box1 = new Box(30, 30, 7, 3);
     box1->SetUuid("box1");
     Box *box2 = new Box(30, 40, 7, 3);
     box2->SetUuid("box2");
     auto *renderer = new CLIRenderer();
     renderer->AttachObject(character);
+    renderer->AttachObject(hasan);
+    renderer->AttachObject(yasin);
+    renderer->AttachObject(bayram);
+    renderer->AttachObject(can);
+    renderer->AttachObject(bashir);
     renderer->AttachObject(box1);
     renderer->AttachObject(box2);
-
 
     char input = '0';
     std::thread input_thread(getKeyboardInput, &input, renderer, character);
