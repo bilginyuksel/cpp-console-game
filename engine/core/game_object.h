@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 class GameObject;
 
@@ -34,11 +35,12 @@ public:
 public:
     GameObject(int x, int y, int width, int height);
     virtual std::vector<std::vector<std::string>> Draw() = 0;
-    virtual bool OnCollision(GameObject&);
+    bool onCollisionInternal(GameObject&);
 
     bool IsSolid() const;
     void SetSolid(bool is_solid);
     void SetCollider(Collider*);
+    void SetId(int id);
     void SetUuid(std::string uuid);
 
     Transform* GetTransform();
@@ -53,6 +55,7 @@ public:
 private:
     void onPositionChangedInternal();
     void updateRectPosition();
+
 };
 
 

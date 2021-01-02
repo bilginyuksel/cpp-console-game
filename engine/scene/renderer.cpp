@@ -85,7 +85,7 @@ void CLIRenderer::draw() {
             }
         }
         Log::d(tag, "Object drawn to screen");
-        drawCollider(obj);
+        //drawCollider(obj);
     }
 }
 
@@ -118,8 +118,8 @@ void CLIRenderer::checkCollision() {
             bool isIntersected = current->Intersects(*(temp->GetCollider()->GetRect()));
             if (isIntersected) {
                 Log::d(tag, "Collision happened!");
-                game_objects_[i]->OnCollision(*game_objects_[j]);
-                game_objects_[j]->OnCollision(*game_objects_[i]);
+                game_objects_[i]->onCollisionInternal(*game_objects_[j]);
+                game_objects_[j]->onCollisionInternal(*game_objects_[i]);
             }
         }
     }
