@@ -372,6 +372,7 @@ public:
           |00000|
           |_____|
         */
+        //return cnv::Str2Vec("--\n--");
         //return cnv::FromFile("../assets/box.txt");
         return obj_vw;
     }
@@ -394,13 +395,13 @@ int main() {
     auto *hasan = new Hasan(30, 10, 9, 8);
     hasan->SetUuid("hasan");
     hasan->SetId(characterCount++);
-    auto *yasin = new Yasin(40, 10, 9, 8);
+    auto *yasin = new Yasin(42, 10, 9, 8);
     yasin->SetUuid("yasin");
     yasin->SetId(characterCount++);
-    auto *bayram = new Bayram(10, 20, 9, 8);
+    auto *bayram = new Bayram(100, 20, 9, 8);
     bayram->SetId(characterCount++);
     bayram->SetUuid("bayram");
-    auto *can = new Can(50, 10, 9, 8);
+    auto *can = new Can(54, 10, 9, 8);
     can->SetId(characterCount++);
     can->SetUuid("can");
     auto *bashir = new Bashir(10, 30, 9, 8);

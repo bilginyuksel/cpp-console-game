@@ -27,6 +27,7 @@ public:
 
     void updateCollision(GameObject& interstected_obj);
     void SetCollision(Collision* collision);
+    bool isShadowCollision(const Rect *collided_rect);
 };
 
 

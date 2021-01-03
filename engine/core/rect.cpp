@@ -48,6 +48,6 @@ bool Rect :: Contains(int x, int y) const {
     return (this->left_ <= x && this->right_ >= x) && (this->bottom_ <= y && this->top_ >= y);
 }
 bool Rect :: Intersects(const Rect &rect) const {
-    bool notIntersects = this->left_ > rect.right_ || this->top_ > rect.bottom_ || rect.left_ > this->right_ || rect.top_ > this->bottom_;
+    bool notIntersects = this->left_ >= rect.right_ || this->top_ >= rect.bottom_ || rect.left_ >= this->right_ || rect.top_ >= this->bottom_;
     return  !notIntersects;
 }

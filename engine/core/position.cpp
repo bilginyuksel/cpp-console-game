@@ -9,6 +9,11 @@ Position :: Position(int x, int y){
     this->y_ = y;
 }
 
+Position :: Position(Position* pos){
+    this->x_ = pos->x_;
+    this->y_ = pos->y_;
+}
+
 int Position :: GetX() const {
     return this->x_;
 }

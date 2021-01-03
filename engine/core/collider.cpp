@@ -27,6 +27,16 @@ Collider :: Collider(Rect *rect) {
     this->rect_ = rect;
 }
 
+bool Collider :: isShadowCollision(const Rect *rect) {
+    int top = this->rect_->GetTop();
+    int bot = this->rect_->GetBottom();
+    int left = this->rect_->GetLeft();
+    int right = this->rect_->GetRight();
+    // if the intersected part of the collider is the corners then this is shadowCollision.
+    bool notIntersects = left > rect->GetRight() || top > rect->GetBottom() || rect->GetLeft() > right || rect->GetTop() > bot;
+    return notIntersects;
+}
+
 void Collider :: updateCollision(GameObject &collided_obj) {
     this->collision_->updateCollisionStatus(collided_obj);
 }
