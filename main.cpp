@@ -109,6 +109,25 @@ public:
     }
 };
 
+class Selin : public GameObject {
+public:
+    Selin(int x, int y, int w, int h): GameObject(x, y, w, h) {}
+    std::vector<std::vector<std::string>> Draw() override {
+        std::string obj = "   SELIN\n"
+                          "   [52]\n"
+                          " ,,,,,,,,\n"
+                          "/.  * *  .\\\n"
+                          ".. ( | ) ..\n"
+                          "..  ---  ..\n"
+                          " . __|__ .\n"
+                          "  /  |  \\\n"
+                          "  \\  |   \\\n"
+                          "    / \\\n"
+                          "   /_  \\_";
+        return cnv::Str2Vec(obj);
+    }
+};
+
 class Box : public GameObject {
 public:
     std::string tag_ = "Box";
@@ -161,6 +180,7 @@ int main() {
     auto *ataberk = new Ataberk(30, 10, 9, 8);
     auto *mehmet = new Mehmet(52, 10, 15, 8);
     auto *alara = new Alara(80, 20, 12, 7);
+    auto *selin = new Selin(40, 40, 11, 11);
 
     Box *box1 = new Box(30, 30, 7, 3);
     Box *box2 = new Box(30, 40, 7, 3);
@@ -171,6 +191,7 @@ int main() {
     renderer->AttachObject(ataberk);
     renderer->AttachObject(mehmet);
     renderer->AttachObject(alara);
+    renderer->AttachObject(selin);
     renderer->AttachObject(box1);
     renderer->AttachObject(box2);
 
