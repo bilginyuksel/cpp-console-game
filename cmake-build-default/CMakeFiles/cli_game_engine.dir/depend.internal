@@ -4,10 +4,8 @@
 CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.cpp
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
- C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.h
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.h
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
- C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/transform.h
 CMakeFiles/cli_game_engine.dir/engine/core/game_object.cpp.obj
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
  C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.cpp

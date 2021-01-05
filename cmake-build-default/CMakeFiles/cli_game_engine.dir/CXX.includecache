@@ -6,31 +6,13 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.cpp
-collider.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
-vector
--
 iostream
--
-string
--
-unordered_set
--
-unordered_map
 -
 rect.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
-game_object.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.cpp
-game_object.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.h
-utility
--
+position.h
+C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.h
 
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.h
 iostream
@@ -50,27 +32,9 @@ C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/transform.h
 collider.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.h
 
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.cpp
-position.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.h
 
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.cpp
-rect.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rigid_body.cpp
-rigid_body.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rigid_body.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rigid_body.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/transform.cpp
-transform.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/transform.h
 
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/transform.h
 deque
@@ -80,25 +44,11 @@ C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.h
 rect.h
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/rect.h
 
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/logger.cpp
-logger.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/logger.h
-
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/logger.h
 iostream
 -
 ctime
 -
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/camera.cpp
-camera.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/camera.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/camera.h
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/obj_converter.cpp
-obj_converter.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/obj_converter.h
 
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/obj_converter.h
 iostream
@@ -107,10 +57,6 @@ vector
 -
 fstream
 -
-
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/renderer.cpp
-renderer.h
-C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/renderer.h
 
 C:/Users/bilgi/CLionProjects/cli-game-engine/engine/scene/renderer.h
 iostream

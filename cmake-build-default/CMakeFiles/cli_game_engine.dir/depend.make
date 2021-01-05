@@ -3,10 +3,8 @@
 
 CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/collider.cpp
 CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/collider.h
-CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/game_object.h
 CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/position.h
 CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/rect.h
-CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj: ../engine/core/transform.h
 
 CMakeFiles/cli_game_engine.dir/engine/core/game_object.cpp.obj: ../engine/core/collider.h
 CMakeFiles/cli_game_engine.dir/engine/core/game_object.cpp.obj: ../engine/core/game_object.cpp

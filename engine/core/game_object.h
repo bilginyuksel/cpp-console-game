@@ -18,9 +18,9 @@ class GameObject;
 #include "transform.h"
 #include "collider.h"
 
-const int rotationLeft = -1;
-const int rotationRight = 1;
-const int rotationStay = 0;
+const int ROTATION_LEFT = -1;
+const int ROTATION_RIGHT = 1;
+const int ROTATION_STAY = 0;
 
 
 class GameObject {

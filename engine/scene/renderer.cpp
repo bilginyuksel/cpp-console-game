@@ -85,7 +85,7 @@ void CLIRenderer::draw() {
             }
         }
         Log::d(tag, "Object drawn to screen");
-        drawCollider(obj);
+     //   drawCollider(obj);
     }
 }
 
