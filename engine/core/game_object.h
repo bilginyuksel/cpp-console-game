@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unordered_set>
 
 class GameObject;
 
@@ -17,9 +18,9 @@ class GameObject;
 #include "transform.h"
 #include "collider.h"
 
-const int rotationLeft = -1;
-const int rotationRight = 1;
-const int rotationStay = 0;
+const int ROTATION_LEFT = -1;
+const int ROTATION_RIGHT = 1;
+const int ROTATION_STAY = 0;
 
 
 class GameObject {
@@ -30,12 +31,14 @@ private:
     std::string uuid_;
     int id_{};
     bool is_solid_{};
+    std::unordered_set<std::string> collide_cache_;
 public:
     Rect *obj_border_rect_;
+protected:
+    void revert();
 public:
     GameObject(int x, int y, int width, int height);
     virtual std::vector<std::vector<std::string>> Draw() = 0;
-    bool onCollisionInternal(GameObject&);
 
     bool IsSolid() const;
     void SetSolid(bool is_solid);
@@ -48,10 +51,17 @@ public:
     int GetId() const;
     Collider* GetCollider();
 
+    virtual void Update();
 	virtual void onInputTriggered(char input);
     virtual bool onPositionChangeRequested(int x, int y);
     // new position will be the transform's current position.
+    bool onCollisionInternal(GameObject&);
+    virtual void onCollisionEnter(GameObject& intersected_obj, std::string tag);
+    virtual void onCollisionStay(GameObject& intersected_obj, std::string tag);
+    virtual void onCollisionExit(GameObject& intersected_obj, std::string tag);
+    
     virtual void onPositionChanged();
+    virtual void onPositionChangeCancelled();
 private:
     void onPositionChangedInternal();
     void updateRectPosition();

@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -G "CodeBlocks - MinGW Makefiles" C:\Users\bilgi\CLionProjects\cli-game-engine
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-default

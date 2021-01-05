@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2020.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\bilgi\CLionProjects\cli-game-engine
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-debug
+Cannot generate into C:\Users\bilgi\CLionProjects\cli-game-engine
+It was created with incompatible generator 'NMake Makefiles'
+
+Please either delete it manually or select another generation directory

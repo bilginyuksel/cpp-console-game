@@ -10,7 +10,6 @@
 std::string GameObject :: GetUuid() const {
     return uuid_;
 }
-
 int GameObject :: GetId() const {
     return id_;
 }
@@ -51,12 +50,56 @@ void GameObject :: SetUuid(std::string uuid) {
     this->uuid_ = std::move(uuid);
 }
 
+// Deprecated
+void GameObject :: onPositionChangeCancelled() {
+   // user can fill this method to understand forbidden moves. 
+}
+
+void GameObject :: revert() {
+    // revert object position to laslt position recorded.
+    Position last_position_ = transform_->position_record_.back();
+    transform_->position_record_.pop_back();
+    transform_->SetPosition(last_position_);
+}
+
 // collision happened with an object. Send information to collider and trigger 
 // collision functions.
 bool GameObject :: onCollisionInternal(GameObject& intersected_obj) {
-    collider_->updateCollision(intersected_obj);
+    // if intersected object is a solid object revert not solid objects
+    // last position.
+    Rect *obj_rect = intersected_obj.GetCollider()->GetRect();
+    Rect *collider_rect = this->GetCollider()->GetRect();
+    int ins_obj_top = obj_rect->GetTop();
+    int ins_obj_bot = obj_rect->GetBottom();
+    int obj_top = collider_rect->GetTop();
+    int obj_bot = collider_rect->GetBottom();
+    bool isValidCollision = ins_obj_bot > obj_top || ins_obj_top < obj_bot;
+
+    if(!isValidCollision && IsSolid()) {
+        intersected_obj.revert();
+    }
+    // understand which collision state happened.
+    // understanding mechanism consists unordered_set
+    std::string uuid = intersected_obj.GetUuid();
+    if(collide_cache_.find(uuid) == collide_cache_.end()) {
+        collide_cache_.insert(uuid);
+        onCollisionEnter(intersected_obj, "ENTER");
+        return true;
+    }
+
+    if(intersected_obj.collider_->isShadowCollision(this->collider_->GetRect())){
+        onCollisionExit(intersected_obj, "EXIT");
+        collide_cache_.erase(uuid);
+        return false;
+    }
+
+    onCollisionStay(intersected_obj, "STAY");
+    //collider_->updateCollision(intersected_obj);
     return false;
 }
+void GameObject :: onCollisionEnter(GameObject& intersected_obj, std::string tag) {}
+void GameObject :: onCollisionStay(GameObject& intersected_obj, std::string tag) {}
+void GameObject :: onCollisionExit(GameObject& intersected_obj, std::string tag) {}
 Collider* GameObject :: GetCollider() {
     return collider_;
 }
@@ -77,6 +120,10 @@ void GameObject :: updateRectPosition() {
     obj_border_rect_->SetRight(right);
     obj_border_rect_->SetLeft(left);
     obj_border_rect_->SetTop(top); 
+}
+
+void GameObject :: Update() {
+
 }
 
 void GameObject :: onPositionChangedInternal() {
