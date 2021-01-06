@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/animation.cpp" "C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-default/CMakeFiles/cli_game_engine.dir/engine/core/animation.cpp.obj"
   "C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.cpp" "C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-default/CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj"
   "C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/game_object.cpp" "C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-default/CMakeFiles/cli_game_engine.dir/engine/core/game_object.cpp.obj"
   "C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/position.cpp" "C:/Users/bilgi/CLionProjects/cli-game-engine/cmake-build-default/CMakeFiles/cli_game_engine.dir/engine/core/position.cpp.obj"

@@ -142,6 +142,33 @@ cli_game_engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cli_game_engine.dir\build.make CMakeFiles/cli_game_engine.dir/build
 .PHONY : cli_game_engine/fast
 
+engine/core/animation.obj: engine/core/animation.cpp.obj
+
+.PHONY : engine/core/animation.obj
+
+# target to build an object file
+engine/core/animation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cli_game_engine.dir\build.make CMakeFiles/cli_game_engine.dir/engine/core/animation.cpp.obj
+.PHONY : engine/core/animation.cpp.obj
+
+engine/core/animation.i: engine/core/animation.cpp.i
+
+.PHONY : engine/core/animation.i
+
+# target to preprocess a source file
+engine/core/animation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cli_game_engine.dir\build.make CMakeFiles/cli_game_engine.dir/engine/core/animation.cpp.i
+.PHONY : engine/core/animation.cpp.i
+
+engine/core/animation.s: engine/core/animation.cpp.s
+
+.PHONY : engine/core/animation.s
+
+# target to generate assembly for a file
+engine/core/animation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cli_game_engine.dir\build.make CMakeFiles/cli_game_engine.dir/engine/core/animation.cpp.s
+.PHONY : engine/core/animation.cpp.s
+
 engine/core/collider.obj: engine/core/collider.cpp.obj
 
 .PHONY : engine/core/collider.obj
@@ -448,6 +475,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... cli_game_engine
+	@echo ... engine/core/animation.obj
+	@echo ... engine/core/animation.i
+	@echo ... engine/core/animation.s
 	@echo ... engine/core/collider.obj
 	@echo ... engine/core/collider.i
 	@echo ... engine/core/collider.s

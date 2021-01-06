@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/cli_game_engine.dir/engine/core/animation.cpp.obj"
   "CMakeFiles/cli_game_engine.dir/engine/core/collider.cpp.obj"
   "CMakeFiles/cli_game_engine.dir/engine/core/game_object.cpp.obj"
   "CMakeFiles/cli_game_engine.dir/engine/core/position.cpp.obj"

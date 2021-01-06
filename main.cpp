@@ -8,7 +8,6 @@
 #include "engine/scene/renderer.h"
 #include "engine/scene/obj_converter.h"
 
-int characterCount = 0;
 
 class Mehmet : public GameObject {
 public:
@@ -176,16 +175,16 @@ void getKeyboardInput(char *input, CLIRenderer *renderer, GameObject *g_object) 
 
 int main() {
     //Log::SetEnabled(true);
-    auto *character = new Character(10, 20, 10, 8);
-    auto *ataberk = new Ataberk(30, 10, 9, 8);
-    auto *mehmet = new Mehmet(52, 10, 15, 8);
-    auto *alara = new Alara(80, 20, 12, 7);
-    auto *selin = new Selin(40, 40, 11, 11);
+    Character *character = new Character(10, 20, 10, 8);
+    Ataberk *ataberk = new Ataberk(30, 10, 9, 8);
+    Mehmet *mehmet = new Mehmet(52, 10, 15, 8);
+    Alara *alara = new Alara(80, 20, 12, 7);
+    Selin *selin = new Selin(40, 40, 11, 11);
 
     Box *box1 = new Box(30, 30, 7, 3);
     Box *box2 = new Box(30, 40, 7, 3);
 
-    auto *renderer = new CLIRenderer();
+    CLIRenderer *renderer = new CLIRenderer();
 
     renderer->AttachObject(character);
     renderer->AttachObject(ataberk);

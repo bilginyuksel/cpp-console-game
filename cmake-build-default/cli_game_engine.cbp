@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/animation.cpp">
+			<Option target="cli_game_engine"/>
+		</Unit>
+		<Unit filename="C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/animation.h">
+			<Option target="cli_game_engine"/>
+		</Unit>
 		<Unit filename="C:/Users/bilgi/CLionProjects/cli-game-engine/engine/core/collider.cpp">
 			<Option target="cli_game_engine"/>
 		</Unit>
